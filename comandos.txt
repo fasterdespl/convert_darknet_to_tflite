@@ -1,0 +1,18 @@
+https://medium.com/@raunak.singh.inventor/converting-yolov4-trained-model-weights-to-tensorflow-lite-model-915b8f02f846
+
+python save_model.py --weights ./data/yolov4.weights --output ./checkpoints/yolov4-416 --input_size 608 --model yolov4
+python detect.py --weights ./checkpoints/yolov4-416 --size 608 --model yolov4 --image ./data/licence.jpg
+python save_model.py --weights ./data/yolov4.weights --output ./checkpoints/yolov4-416 --input_size 608 --model yolov4 --framework tflite
+python convert_tflite.py --weights ./checkpoints/yolov4-416 --output ./checkpoints/yolov4-416.tflite
+python detectvideo.py --weights ./checkpoints/yolov4-416.tflite --size 608 --model yolov4 --video ./data/cars_highway.mp4 --framework tflite
+python detectvideo.py --weights ./checkpoints/yolov4-416.tflite --size 608 --model yolov4 --video ./data/cars_highway.mp4 --framework tflite --score 0.5 --iou 0.5
+
+
+python save_model.py --weights ./data/yolov4-tiny.weights --output ./checkpoints/yolov4-416 --input_size 416 --model yolov4 --tiny
+python detect.py --weights ./checkpoints/yolov4-416 --size 416 --model yolov4 --tiny --image ./data/licence.jpg
+python save_model.py --weights ./data/yolov4-tiny.weights --output ./checkpoints/yolov4-tiny-416 --input_size 416 --model yolov4 --tiny --framework tflite
+python convert_tflite.py --weights ./checkpoints/yolov4-tiny-416 --output ./checkpoints/yolov4-tiny-416.tflite
+python detectvideo.py --weights ./checkpoints/yolov4-tiny-416.tflite --size 416 --model yolov4 --tiny --video ./data/plates.mp4 --framework tflite
+python detectvideo.py --weights ./checkpoints/yolov4-tiny-416.tflite --size 416 --model yolov4 --tiny --video ./data/plates.mp4 --framework tflite --score 0.5 --iou 0.5
+
+
